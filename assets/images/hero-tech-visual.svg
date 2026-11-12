@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 650" width="100%" height="100%" fill="none">
+  <defs>
+    <linearGradient id="cubeTop" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#1D4ED8"/>
+    </linearGradient>
+    <linearGradient id="cubeLeft" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1E40AF"/>
+      <stop offset="100%" stop-color="#0B132B"/>
+    </linearGradient>
+    <linearGradient id="cubeRight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    
+    <linearGradient id="purpleCubeTop" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C084FC"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+    <linearGradient id="purpleCubeLeft" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#6D28D9"/>
+      <stop offset="100%" stop-color="#2E1065"/>
+    </linearGradient>
+    <linearGradient id="purpleCubeRight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#4C1D95"/>
+    </linearGradient>
+
+    <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.35"/>
+      <stop offset="50%" stop-color="#1E40AF" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#070D1E" stop-opacity="0"/>
+    </radialGradient>
+
+    <filter id="neonBlur" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Ambient Radiant Core -->
+  <circle cx="400" cy="330" r="260" fill="url(#centerGlow)"/>
+
+  <!-- Isometric Ground Grid -->
+  <g opacity="0.25">
+    <path d="M400 130 L740 330 L400 530 L60 330 Z" stroke="#38BDF8" stroke-width="1.5" fill="none"/>
+    <path d="M400 180 L670 330 L400 480 L130 330 Z" stroke="#1E40AF" stroke-width="1.2" fill="none"/>
+    <path d="M400 230 L600 330 L400 430 L200 330 Z" stroke="#38BDF8" stroke-width="1" fill="none"/>
+    <line x1="400" y1="130" x2="400" y2="530" stroke="#38BDF8" stroke-width="1" stroke-dasharray="4,4"/>
+    <line x1="60" y1="330" x2="740" y2="330" stroke="#38BDF8" stroke-width="1" stroke-dasharray="4,4"/>
+  </g>
+
+  <!-- Floating Data Rays -->
+  <g opacity="0.7">
+    <line x1="220" y1="210" x2="400" y2="290" stroke="#38BDF8" stroke-width="2" stroke-dasharray="6,4" filter="url(#neonBlur)"/>
+    <line x1="580" y1="210" x2="400" y2="290" stroke="#A855F7" stroke-width="2" stroke-dasharray="6,4" filter="url(#neonBlur)"/>
+    <line x1="400" y1="290" x2="400" y2="440" stroke="#60A5FA" stroke-width="2" stroke-dasharray="6,4"/>
+    <line x1="240" y1="380" x2="400" y2="440" stroke="#38BDF8" stroke-width="1.5"/>
+    <line x1="560" y1="380" x2="400" y2="440" stroke="#C084FC" stroke-width="1.5"/>
+  </g>
+
+  <!-- Center Core Platform (Enterprise Software Hub) -->
+  <g transform="translate(400, 290)">
+    <!-- Top Face -->
+    <polygon points="0,-45 78,0 0,45 -78,0" fill="url(#cubeTop)"/>
+    <!-- Left Face -->
+    <polygon points="-78,0 0,45 0,110 -78,65" fill="url(#cubeLeft)"/>
+    <!-- Right Face -->
+    <polygon points="0,45 78,0 78,65 0,110" fill="url(#cubeRight)"/>
+    
+    <!-- Central Monolith Icon -->
+    <circle cx="0" cy="0" r="14" fill="#FFFFFF" filter="url(#neonBlur)"/>
+    <circle cx="0" cy="0" r="8" fill="#1E40AF"/>
+    <text x="0" y="4" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="800" fill="#FFFFFF" text-anchor="middle">AI</text>
+  </g>
+
+  <!-- Left Node 1 (Python / Django Backend Hub) -->
+  <g transform="translate(220, 210)">
+    <polygon points="0,-30 52,0 0,30 -52,0" fill="url(#cubeTop)"/>
+    <polygon points="-52,0 0,30 0,70 -52,40" fill="url(#cubeLeft)"/>
+    <polygon points="0,30 52,0 52,40 0,70" fill="url(#cubeRight)"/>
+    <circle cx="0" cy="0" r="8" fill="#38BDF8"/>
+    <!-- Floating Badge -->
+    <rect x="-42" y="-55" width="84" height="22" rx="6" fill="#0F172AF2" stroke="#38BDF8" stroke-width="1"/>
+    <text x="0" y="-40" font-family="'Inter', sans-serif" font-size="10" font-weight="700" fill="#38BDF8" text-anchor="middle">Python / Django</text>
+  </g>
+
+  <!-- Right Node 2 (AI & Machine Learning Engine) -->
+  <g transform="translate(580, 210)">
+    <polygon points="0,-30 52,0 0,30 -52,0" fill="url(#purpleCubeTop)"/>
+    <polygon points="-52,0 0,30 0,70 -52,40" fill="url(#purpleCubeLeft)"/>
+    <polygon points="0,30 52,0 52,40 0,70" fill="url(#purpleCubeRight)"/>
+    <circle cx="0" cy="0" r="8" fill="#C084FC" filter="url(#neonBlur)"/>
+    <!-- Floating Badge -->
+    <rect x="-48" y="-55" width="96" height="22" rx="6" fill="#0F172AF2" stroke="#A855F7" stroke-width="1"/>
+    <text x="0" y="-40" font-family="'Inter', sans-serif" font-size="10" font-weight="700" fill="#D8B4FE" text-anchor="middle">AI &amp; Neural Nets</text>
+  </g>
+
+  <!-- Bottom Node 3 (AWS Cloud & DevOps Backbone) -->
+  <g transform="translate(400, 470)">
+    <polygon points="0,-32 58,0 0,32 -58,0" fill="url(#cubeTop)"/>
+    <polygon points="-58,0 0,32 0,75 -58,43" fill="url(#cubeLeft)"/>
+    <polygon points="0,32 58,0 58,43 0,75" fill="url(#cubeRight)"/>
+    <circle cx="0" cy="0" r="9" fill="#F59E0B"/>
+    <!-- Floating Badge -->
+    <rect x="-56" y="85" width="112" height="22" rx="6" fill="#0F172AF2" stroke="#F59E0B" stroke-width="1"/>
+    <text x="0" y="100" font-family="'Inter', sans-serif" font-size="10" font-weight="700" fill="#FCD34D" text-anchor="middle">AWS Cloud &amp; CI/CD</text>
+  </g>
+
+  <!-- Left-Bottom Node 4 (Blockchain & Web3) -->
+  <g transform="translate(200, 390)">
+    <polygon points="0,-24 42,0 0,24 -42,0" fill="url(#purpleCubeTop)"/>
+    <polygon points="-42,0 0,24 0,55 -42,31" fill="url(#purpleCubeLeft)"/>
+    <polygon points="0,24 42,0 42,31 0,55" fill="url(#purpleCubeRight)"/>
+    <rect x="-44" y="62" width="88" height="20" rx="5" fill="#0F172AF2" stroke="#8B5CF6" stroke-width="1"/>
+    <text x="0" y="76" font-family="'Inter', sans-serif" font-size="9.5" font-weight="700" fill="#C084FC" text-anchor="middle">Web3 &amp; Solidity</text>
+  </g>
+
+  <!-- Right-Bottom Node 5 (SaaS & Mobile Apps) -->
+  <g transform="translate(600, 390)">
+    <polygon points="0,-24 42,0 0,24 -42,0" fill="url(#cubeTop)"/>
+    <polygon points="-42,0 0,24 0,55 -42,31" fill="url(#cubeLeft)"/>
+    <polygon points="0,24 42,0 42,31 0,55" fill="url(#cubeRight)"/>
+    <rect x="-46" y="62" width="92" height="20" rx="5" fill="#0F172AF2" stroke="#38BDF8" stroke-width="1"/>
+    <text x="0" y="76" font-family="'Inter', sans-serif" font-size="9.5" font-weight="700" fill="#7DD3FC" text-anchor="middle">SaaS &amp; Mobile</text>
+  </g>
+
+  <!-- Glowing Telemetry Nodes -->
+  <circle cx="310" cy="250" r="3" fill="#FFFFFF" filter="url(#neonBlur)"/>
+  <circle cx="490" cy="250" r="3" fill="#FFFFFF" filter="url(#neonBlur)"/>
+  <circle cx="300" cy="430" r="3" fill="#38BDF8"/>
+  <circle cx="500" cy="430" r="3" fill="#A855F7"/>
+  <circle cx="400" cy="385" r="4" fill="#38BDF8" filter="url(#neonBlur)"/>
+</svg>

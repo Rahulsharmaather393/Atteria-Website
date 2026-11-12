@@ -1,0 +1,10 @@
+# ==============================================================================
+# ATTERIA TECHNOLOGIES PVT. LTD. - ROBOTS.TXT
+# https://atteriatech.com/
+# ==============================================================================
+
+User-agent: *
+Allow: /
+Disallow: /admin.html
+
+Sitemap: https://atteriatech.com/sitemap.xml

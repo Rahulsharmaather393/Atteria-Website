@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 700" width="100%" height="100%" fill="none">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="50%" stop-color="#0B132B"/>
+      <stop offset="100%" stop-color="#070D1E"/>
+    </linearGradient>
+    <linearGradient id="royalSuit" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E3A8A"/>
+      <stop offset="60%" stop-color="#1E40AF"/>
+      <stop offset="100%" stop-color="#172554"/>
+    </linearGradient>
+    <linearGradient id="haloGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="goldBadge" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCD34D"/>
+      <stop offset="100%" stop-color="#F59E0B"/>
+    </linearGradient>
+    <radialGradient id="faceGlow" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#FCD34D" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#38BDF8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="600" height="700" rx="24" fill="url(#bgGrad)"/>
+  
+  <!-- Subtle Architectural Grid Behind -->
+  <g opacity="0.12">
+    <line x1="100" y1="0" x2="100" y2="700" stroke="#38BDF8" stroke-width="1"/>
+    <line x1="300" y1="0" x2="300" y2="700" stroke="#38BDF8" stroke-width="1"/>
+    <line x1="500" y1="0" x2="500" y2="700" stroke="#38BDF8" stroke-width="1"/>
+    <line x1="0" y1="180" x2="600" y2="180" stroke="#38BDF8" stroke-width="1"/>
+    <line x1="0" y1="360" x2="600" y2="360" stroke="#38BDF8" stroke-width="1"/>
+    <line x1="0" y1="540" x2="600" y2="540" stroke="#38BDF8" stroke-width="1"/>
+  </g>
+
+  <!-- Halo Aura -->
+  <circle cx="300" cy="270" r="190" fill="url(#haloGrad)"/>
+
+  <!-- Stylized Executive Portrait Silhouette -->
+  <!-- Shoulders & Executive Blazer -->
+  <path d="M120 700 L160 520 C185 450 220 410 270 395 L270 380 L330 380 L330 395 C380 410 415 450 440 520 L480 700 Z" fill="url(#royalSuit)"/>
+  <path d="M260 410 L300 520 L340 410 Z" fill="#F8FAFC" opacity="0.95"/>
+  <path d="M275 420 L300 560 L325 420 Z" fill="#2563EB" opacity="0.2"/>
+
+  <!-- Neck & Head Contour -->
+  <rect x="278" y="310" width="44" height="85" rx="10" fill="#E2B18E"/>
+  <!-- Head Silhouette with Professional Hair -->
+  <path d="M230 250 C220 180 250 120 300 120 C350 120 380 180 370 250 C365 295 345 330 300 330 C255 330 235 295 230 250 Z" fill="#E2B18E"/>
+  
+  <!-- Sleek Executive Hair (Stylized Dark Waves) -->
+  <path d="M220 220 C220 130 255 90 300 90 C345 90 380 130 380 220 C380 290 370 360 360 380 C345 320 350 250 340 200 C325 150 275 150 260 200 C250 250 255 320 240 380 C230 360 220 290 220 220 Z" fill="#1E293B"/>
+
+  <!-- Professional Facial Features (Stylized Minimalist) -->
+  <path d="M268 215 C275 210 288 210 293 216" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+  <path d="M307 216 C312 210 325 210 332 215" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="282" cy="226" r="3.5" fill="#334155"/>
+  <circle cx="318" cy="226" r="3.5" fill="#334155"/>
+  <path d="M300 226 L298 252 L305 252" stroke="#CB8D64" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M285 275 C292 284 308 284 315 275" stroke="#B91C1C" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Executive Ambient Ring -->
+  <circle cx="300" cy="250" r="160" stroke="#38BDF8" stroke-width="1.5" stroke-dasharray="6,8" opacity="0.4"/>
+  <circle cx="300" cy="250" r="175" stroke="#8B5CF6" stroke-width="1" stroke-dasharray="2,6" opacity="0.3"/>
+
+  <!-- Executive Title Card Overlay -->
+  <g transform="translate(60, 560)">
+    <rect width="480" height="105" rx="16" fill="#0B132BE8" stroke="#1E40AF" stroke-width="1.5" filter="drop-shadow(0 15px 25px rgba(0,0,0,0.6))"/>
+    
+    <!-- Verified Badge -->
+    <circle cx="445" cy="52" r="16" fill="url(#goldBadge)"/>
+    <path d="M439 52 L443 56 L451 48" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <text x="32" y="44" font-family="'Plus Jakarta Sans', sans-serif" font-size="24" font-weight="800" fill="#FFFFFF">
+      Sapna Thakur
+    </text>
+    <text x="32" y="68" font-family="'Inter', sans-serif" font-size="13.5" font-weight="600" fill="#38BDF8">
+      Founder &amp; Executive Director
+    </text>
+    <text x="32" y="88" font-family="'Inter', sans-serif" font-size="11.5" font-weight="500" fill="#94A3B8">
+      ATTERIA TECHNOLOGIES PVT. LTD. &bull; 7+ Years IT Leadership
+    </text>
+  </g>
+</svg>
