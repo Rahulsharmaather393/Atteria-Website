@@ -1,5 +1,5 @@
 /**
- * ATTERIA TECHNOLOGIES PVT. LTD.
+ * HIMALAYAN CODERS PVT. LTD.
  * Executive Admin Dashboard & Content Management System
  * Handles Authentication, Leads, Applications, Portfolio, Blog & Analytics
  */
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Default Mock Data if empty
 function ensureSeedData() {
-  if (!localStorage.getItem('atteria_inquiries')) {
+  if (!localStorage.getItem('himalayan_inquiries')) {
     const defaultInquiries = [
       {
         id: 'INQ-882104',
@@ -52,10 +52,10 @@ function ensureSeedData() {
         status: 'Contacted'
       }
     ];
-    localStorage.setItem('atteria_inquiries', JSON.stringify(defaultInquiries));
+    localStorage.setItem('himalayan_inquiries', JSON.stringify(defaultInquiries));
   }
 
-  if (!localStorage.getItem('atteria_applications')) {
+  if (!localStorage.getItem('himalayan_applications')) {
     const defaultApps = [
       {
         id: 'APP-9912',
@@ -82,7 +82,7 @@ function ensureSeedData() {
         notes: 'Published papers in NLP and LangChain orchestration.'
       }
     ];
-    localStorage.setItem('atteria_applications', JSON.stringify(defaultApps));
+    localStorage.setItem('himalayan_applications', JSON.stringify(defaultApps));
   }
 }
 
@@ -92,7 +92,7 @@ function initAdminAuth() {
   const adminMain = document.getElementById('adminMainContent');
   const logoutBtn = document.getElementById('adminLogoutBtn');
 
-  const isAuthenticated = sessionStorage.getItem('atteria_admin_auth') === 'true';
+  const isAuthenticated = sessionStorage.getItem('himalayan_admin_auth') === 'true';
 
   if (isAuthenticated) {
     loginOverlay?.classList.add('hidden');
@@ -108,8 +108,8 @@ function initAdminAuth() {
       const user = document.getElementById('adminUsername')?.value;
       const pass = document.getElementById('adminPassword')?.value;
 
-      if ((user === 'admin' && pass === 'atteria2026') || (user === 'sapna' && pass === 'atteria2026')) {
-        sessionStorage.setItem('atteria_admin_auth', 'true');
+      if ((user === 'admin' && pass === 'himalayan2026') || (user === 'sapna' && pass === 'himalayan2026')) {
+        sessionStorage.setItem('himalayan_admin_auth', 'true');
         loginOverlay.classList.add('hidden');
         adminMain.classList.remove('hidden');
         loadDashboardData();
@@ -118,14 +118,14 @@ function initAdminAuth() {
         const errorEl = document.getElementById('loginError');
         if (errorEl) {
           errorEl.classList.remove('hidden');
-          errorEl.innerText = 'Invalid executive credentials. Use admin / atteria2026';
+          errorEl.innerText = 'Invalid executive credentials. Use admin / himalayan2026';
         }
       }
     });
   }
 
   logoutBtn?.addEventListener('click', () => {
-    sessionStorage.removeItem('atteria_admin_auth');
+    sessionStorage.removeItem('himalayan_admin_auth');
     location.reload();
   });
 }
@@ -158,8 +158,8 @@ function initAdminTabs() {
 function loadDashboardData() {
   ensureSeedData();
 
-  const inquiries = JSON.parse(localStorage.getItem('atteria_inquiries') || '[]');
-  const applications = JSON.parse(localStorage.getItem('atteria_applications') || '[]');
+  const inquiries = JSON.parse(localStorage.getItem('himalayan_inquiries') || '[]');
+  const applications = JSON.parse(localStorage.getItem('himalayan_applications') || '[]');
 
   // Update Stats Cards
   const totalInquiriesEl = document.getElementById('statTotalInquiries');
@@ -270,10 +270,10 @@ function renderApplicationsTable(applications) {
 
 // Global functions for inline actions
 window.updateInquiryStatus = (index, newStatus) => {
-  const inquiries = JSON.parse(localStorage.getItem('atteria_inquiries') || '[]');
+  const inquiries = JSON.parse(localStorage.getItem('himalayan_inquiries') || '[]');
   if (inquiries[index]) {
     inquiries[index].status = newStatus;
-    localStorage.setItem('atteria_inquiries', JSON.stringify(inquiries));
+    localStorage.setItem('himalayan_inquiries', JSON.stringify(inquiries));
     loadDashboardData();
     showToast('Status Updated', `Inquiry status changed to ${newStatus}.`);
   }
@@ -281,9 +281,9 @@ window.updateInquiryStatus = (index, newStatus) => {
 
 window.deleteInquiry = (index) => {
   if (confirm('Archive this client inquiry record?')) {
-    const inquiries = JSON.parse(localStorage.getItem('atteria_inquiries') || '[]');
+    const inquiries = JSON.parse(localStorage.getItem('himalayan_inquiries') || '[]');
     inquiries.splice(index, 1);
-    localStorage.setItem('atteria_inquiries', JSON.stringify(inquiries));
+    localStorage.setItem('himalayan_inquiries', JSON.stringify(inquiries));
     loadDashboardData();
     showToast('Record Archived', 'Inquiry removed from active pipeline.');
   }
@@ -294,7 +294,7 @@ function initAdminActions() {
   const exportBtn = document.getElementById('exportLeadsBtn');
   if (exportBtn) {
     exportBtn.addEventListener('click', () => {
-      const inquiries = JSON.parse(localStorage.getItem('atteria_inquiries') || '[]');
+      const inquiries = JSON.parse(localStorage.getItem('himalayan_inquiries') || '[]');
       if (!inquiries.length) {
         alert('No inquiries to export.');
         return;
@@ -308,7 +308,7 @@ function initAdminActions() {
       const encodedUri = encodeURI(csvContent);
       const link = document.createElement('a');
       link.setAttribute('href', encodedUri);
-      link.setAttribute('download', `atteria_leads_export_${Date.now()}.csv`);
+      link.setAttribute('download', `himalayan_leads_export_${Date.now()}.csv`);
       document.body.appendChild(link);
       link.click();
       link.remove();

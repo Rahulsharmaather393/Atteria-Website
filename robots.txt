@@ -1,10 +1,10 @@
 # ==============================================================================
-# ATTERIA TECHNOLOGIES PVT. LTD. - ROBOTS.TXT
-# https://atteriatech.com/
+# HIMALAYAN CODERS PVT. LTD. - ROBOTS.TXT
+# https://himalayancoders.com/
 # ==============================================================================
 
 User-agent: *
 Allow: /
 Disallow: /admin.html
 
-Sitemap: https://atteriatech.com/sitemap.xml
+Sitemap: https://himalayancoders.com/sitemap.xml
