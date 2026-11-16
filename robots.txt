@@ -1,0 +1,10 @@
+# ==============================================================================
+# HIMALAYAN CODEX PVT. LTD. - ROBOTS.TXT
+# https://himalayancodex.com/
+# ==============================================================================
+
+User-agent: *
+Allow: /
+Disallow: /admin.html
+
+Sitemap: https://himalayancodex.com/sitemap.xml
