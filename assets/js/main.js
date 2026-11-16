@@ -1,5 +1,5 @@
 /**
- * HIMALAYAN CODERS PVT. LTD.
+ * HIMALAYAN CODEX PVT. LTD.
  * Core Enterprise Application Script
  * Features: Mobile Nav, Modals, Quote Calculator, Dynamic Filtering,
  * Local Storage Persistence, Form Validation & Admin CMS Handlers
@@ -245,9 +245,9 @@ function initForms() {
       };
 
       // Save to localStorage
-      const existing = JSON.parse(localStorage.getItem('himalayan_inquiries') || '[]');
+      const existing = JSON.parse(localStorage.getItem('himcodex_inquiries') || '[]');
       existing.unshift(inquiry);
-      localStorage.setItem('himalayan_inquiries', JSON.stringify(existing));
+      localStorage.setItem('himcodex_inquiries', JSON.stringify(existing));
 
       form.reset();
       closeModal('consultationModal');
@@ -255,7 +255,7 @@ function initForms() {
 
       showToast(
         'Inquiry Transmitted Successfully!',
-        'Thank you for contacting HIMALAYAN CODERS. Our technical architect will review your project and connect within 4 business hours.'
+        'Thank you for contacting HIMALAYAN CODEX. Our technical architect will review your project and connect within 4 business hours.'
       );
     });
   });
@@ -266,7 +266,7 @@ function initForms() {
       e.preventDefault();
       const input = form.querySelector('input[type="email"]');
       if (input && input.value) {
-        showToast('Subscribed to Himalayan Coders Insights', 'You will receive our latest technology papers and executive whitepapers.');
+        showToast('Subscribed to HIMALAYAN CODEX Insights', 'You will receive our latest technology papers and executive whitepapers.');
         input.value = '';
       }
     });
@@ -413,7 +413,7 @@ const BLOG_DATA = {
     date: 'Nov 8, 2026',
     readTime: '6 min read',
     content: `
-      <p class="mb-4 text-slate-300 leading-relaxed">Enterprise adoption of Generative Artificial Intelligence requires moving beyond isolated prompt-response experimentation to reliable, low-latency, and auditable production pipelines. At HIMALAYAN CODERS, our AI engineering practice structures enterprise LLM deployments through robust orchestration frameworks like LangChain paired with Python 3.11's async runtime performance.</p>
+      <p class="mb-4 text-slate-300 leading-relaxed">Enterprise adoption of Generative Artificial Intelligence requires moving beyond isolated prompt-response experimentation to reliable, low-latency, and auditable production pipelines. At HIMALAYAN CODEX, our AI engineering practice structures enterprise LLM deployments through robust orchestration frameworks like LangChain paired with Python 3.11's async runtime performance.</p>
       
       <h3 class="text-xl font-bold text-white mt-6 mb-3">1. Retrieval-Augmented Generation (RAG) Security Boundaries</h3>
       <p class="mb-4 text-slate-300 leading-relaxed">Public LLMs cannot access private corporate knowledge bases securely without strict perimeter controls. We engineer isolated vector databases (using pgvector and Pinecone) coupled with semantic embedding chunking algorithms. Every query is authenticated and filtered through user role permissions prior to context vector retrieval, completely preventing data leakage across organizational tiers.</p>
@@ -425,11 +425,11 @@ const BLOG_DATA = {
   'blog-2': {
     title: 'High-Concurrency Django Architecture: Scaling to 100K Requests per Second',
     category: 'Django & Python',
-    author: 'Himalayan Coders Engineering Team',
+    author: 'HIMALAYAN CODEX Engineering Team',
     date: 'Nov 2, 2026',
     readTime: '8 min read',
     content: `
-      <p class="mb-4 text-slate-300 leading-relaxed">A recurring myth in modern web development suggests that Python and Django cannot handle hyper-scale traffic. Having designed systems with 7+ years of IT engineering experience, HIMALAYAN CODERS has proven that well-architected Django backends comfortably power world-class enterprise volume.</p>
+      <p class="mb-4 text-slate-300 leading-relaxed">A recurring myth in modern web development suggests that Python and Django cannot handle hyper-scale traffic. Having designed systems with 7+ years of IT engineering experience, HIMALAYAN CODEX has proven that well-architected Django backends comfortably power world-class enterprise volume.</p>
       
       <h3 class="text-xl font-bold text-white mt-6 mb-3">Database Connection Pooling and Read-Replica Splitting</h3>
       <p class="mb-4 text-slate-300 leading-relaxed">The bottleneck in high-throughput applications is rarely Python itself; it is unoptimized database I/O. By configuring connection pooling with PgBouncer, establishing strict automatic database routing for read vs write replicas, and eliminating N+1 queries through <code>select_related</code> and <code>prefetch_related</code>, database saturation is virtually eliminated.</p>
@@ -445,7 +445,7 @@ const BLOG_DATA = {
     date: 'Oct 26, 2026',
     readTime: '7 min read',
     content: `
-      <p class="mb-4 text-slate-300 leading-relaxed">Smart contracts are immutable once deployed to production blockchains. A single logic flaw or reentrancy vulnerability can result in catastrophic financial loss. At HIMALAYAN CODERS, our blockchain engineering workflow follows rigorous verification standards before any contract touches mainnet.</p>
+      <p class="mb-4 text-slate-300 leading-relaxed">Smart contracts are immutable once deployed to production blockchains. A single logic flaw or reentrancy vulnerability can result in catastrophic financial loss. At HIMALAYAN CODEX, our blockchain engineering workflow follows rigorous verification standards before any contract touches mainnet.</p>
       
       <h3 class="text-xl font-bold text-white mt-6 mb-3">Automated Static Analysis & Formal Verification</h3>
       <p class="mb-4 text-slate-300 leading-relaxed">Prior to human review, contracts are subjected to automated symbolic execution and fuzzing frameworks including Slither and Mythril. We enforce checks against reentrancy, integer overflows, timestamp dependency, and flash-loan attack vulnerabilities.</p>
@@ -458,7 +458,7 @@ const BLOG_DATA = {
     date: 'Oct 19, 2026',
     readTime: '5 min read',
     content: `
-      <p class="mb-4 text-slate-300 leading-relaxed">Modern enterprises demand 99.99% uptime with frictionless release cadences. At HIMALAYAN CODERS, our DevOps engineers implement Infrastructure as Code (IaC) using Terraform, ensuring that cloud infrastructure is immutable, reproducible, and self-healing across AWS availability zones.</p>
+      <p class="mb-4 text-slate-300 leading-relaxed">Modern enterprises demand 99.99% uptime with frictionless release cadences. At HIMALAYAN CODEX, our DevOps engineers implement Infrastructure as Code (IaC) using Terraform, ensuring that cloud infrastructure is immutable, reproducible, and self-healing across AWS availability zones.</p>
       
       <h3 class="text-xl font-bold text-white mt-6 mb-3">Blue-Green & Canary Deployments</h3>
       <p class="mb-4 text-slate-300 leading-relaxed">Through AWS ECS and Application Load Balancer health hooks, updates are released with zero customer downtime. If automated synthetic monitors detect anomalous error spikes, traffic is automatically rolled back in seconds without service disruption.</p>
