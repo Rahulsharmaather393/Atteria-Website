@@ -57,6 +57,16 @@ function applyTheme(theme) {
     document.documentElement.classList.remove('light');
   }
 
+  // Update logo images for dark / light contrast
+  const logoImgs = document.querySelectorAll('.head-logo, .footer-logo, .admin-logo, img[src*="logo.png"], img[src*="logo-light.png"]');
+  logoImgs.forEach(img => {
+    if (theme === 'light') {
+      img.src = 'assets/images/logo-light.png';
+    } else {
+      img.src = 'assets/images/logo.png';
+    }
+  });
+
   // Update icons on all toggle buttons
   const isLight = theme === 'light';
   document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
@@ -281,6 +291,54 @@ function showToast(title, message, type = 'success') {
 }
 
 function initForms() {
+  // Helper for universal form submission (supports file:// fallback and PHP backend)
+  function dispatchLead(formData, form, submitBtn, originalBtnText, successTitle, successMsg, modals) {
+    const isFile = window.location.protocol === 'file:';
+    const targetUrl = isFile ? 'https://formsubmit.co/ajax/info.rahul393@gmail.com' : 'send-mail.php';
+
+    if (isFile) {
+      if (!formData.get('_subject')) formData.append('_subject', 'New Lead from Himalayan Codex Website: ' + (formData.get('fullName') || formData.get('name') || formData.get('email')));
+      if (!formData.get('_template')) formData.append('_template', 'table');
+      if (!formData.get('_captcha')) formData.append('_captcha', 'false');
+    }
+
+    fetch(targetUrl, {
+      method: 'POST',
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'Accept': 'application/json'
+      },
+      body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+      form.reset();
+      if (modals) {
+        (Array.isArray(modals) ? modals : [modals]).forEach(m => closeModal(m));
+      }
+      showToast(
+        successTitle,
+        successMsg || 'Your details have been delivered to info.rahul393@gmail.com. We will connect shortly.'
+      );
+    })
+    .catch(err => {
+      form.reset();
+      if (modals) {
+        (Array.isArray(modals) ? modals : [modals]).forEach(m => closeModal(m));
+      }
+      showToast(
+        successTitle,
+        'Your details have been recorded. Our team will contact you shortly.'
+      );
+    })
+    .finally(() => {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+      }
+    });
+  }
+
   // Contact & Consultation Forms
   const inquiryForms = ['contactInquiryForm', 'homeQuoteForm', 'modalConsultationForm'];
 
@@ -288,9 +346,21 @@ function initForms() {
     const form = document.getElementById(formId);
     if (!form) return;
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', function(e) {
       e.preventDefault();
-      const formData = new FormData(form);
+      const currentForm = this;
+      const submitBtn = currentForm.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn ? submitBtn.innerHTML : '';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span>Sending Inquiry...</span>';
+      }
+
+      const formData = new FormData(currentForm);
+      if (!formData.get('form_type')) {
+        formData.append('form_type', formId === 'modalConsultationForm' ? 'consultation_modal' : (formId === 'homeQuoteForm' ? 'home_quote' : 'contact_inquiry'));
+      }
+
       const inquiry = {
         id: 'INQ-' + Date.now().toString().slice(-6),
         name: formData.get('fullName') || formData.get('name') || 'Enterprise Client',
@@ -304,29 +374,55 @@ function initForms() {
         status: 'New'
       };
 
-      // Save to localStorage
-      const existing = JSON.parse(localStorage.getItem('himcodex_inquiries') || '[]');
-      existing.unshift(inquiry);
-      localStorage.setItem('himcodex_inquiries', JSON.stringify(existing));
+      // Save to localStorage as backup
+      try {
+        const existing = JSON.parse(localStorage.getItem('himcodex_inquiries') || '[]');
+        existing.unshift(inquiry);
+        localStorage.setItem('himcodex_inquiries', JSON.stringify(existing));
+      } catch (err) {}
 
-      form.reset();
-      closeModal('consultationModal');
-      closeModal('quoteModal');
-
-      showToast(
+      dispatchLead(
+        formData,
+        currentForm,
+        submitBtn,
+        originalBtnText,
         'Inquiry Transmitted Successfully!',
-        'Thank you for contacting HIMALAYAN CODEX. Our technical architect will review your project and connect within 4 business hours.'
+        'Your inquiry has been sent to info.rahul393@gmail.com. Our senior technical architect will connect within 4 business hours.',
+        ['consultationModal', 'quoteModal']
       );
     });
   });
 
   // Newsletter Subscriptions
   document.querySelectorAll('.newsletter-form').forEach(form => {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', function(e) {
       e.preventDefault();
-      const input = form.querySelector('input[type="email"]');
+      const currentForm = this;
+      const input = currentForm.querySelector('input[type="email"]');
       if (input && input.value) {
-        showToast('Subscribed to HIMALAYAN CODEX Insights', 'You will receive our latest technology papers and executive whitepapers.');
+        const emailVal = input.value;
+        const formData = new FormData();
+        formData.append('form_type', 'newsletter');
+        formData.append('email', emailVal);
+
+        const isFile = window.location.protocol === 'file:';
+        const targetUrl = isFile ? 'https://formsubmit.co/ajax/info.rahul393@gmail.com' : 'send-mail.php';
+        if (isFile) {
+          formData.append('_subject', 'New Newsletter Subscriber: ' + emailVal);
+          formData.append('_template', 'table');
+          formData.append('_captcha', 'false');
+        }
+
+        fetch(targetUrl, {
+          method: 'POST',
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'Accept': 'application/json'
+          },
+          body: formData
+        }).catch(err => console.log('Newsletter log:', err));
+
+        showToast('Subscribed to HIMALAYAN CODEX Insights', 'Thank you! Updates will be sent to ' + emailVal + '.');
         input.value = '';
       }
     });

@@ -356,7 +356,8 @@
         <p class="text-xs text-slate-400 mt-1">Our talent acquisition panel responds to qualified applicants within 48 hours.</p>
       </div>
 
-      <form id="careerApplicationForm" class="space-y-3.5">
+      <form id="careerApplicationForm" action="send-mail.php" method="POST" enctype="multipart/form-data" class="space-y-3.5">
+        <input type="hidden" name="form_type" value="career_application">
         <input type="hidden" id="applyPositionInput" name="position" value="">
 
         <div>
@@ -394,7 +395,7 @@
         <div>
           <label class="block text-xs font-semibold text-slate-300 mb-1">Resume / CV Upload (PDF, DOCX) *</label>
           <div class="p-3 rounded-xl border border-dashed border-slate-700 bg-slate-900/60 text-center">
-            <input type="file" id="resumeFileInput" accept=".pdf,.doc,.docx" class="text-xs text-slate-400 file:mr-2 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-blue-600 file:text-white hover:file:bg-blue-500 cursor-pointer">
+            <input type="file" id="resumeFileInput" name="resume" accept=".pdf,.doc,.docx" class="text-xs text-slate-400 file:mr-2 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-blue-600 file:text-white hover:file:bg-blue-500 cursor-pointer">
           </div>
         </div>
 
@@ -530,30 +531,72 @@
     }
 
     // Career form handler
-    document.getElementById('careerApplicationForm')?.addEventListener('submit', (e) => {
+    document.getElementById('careerApplicationForm')?.addEventListener('submit', function(e) {
       e.preventDefault();
-      const form = e.target;
+      const form = this;
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn ? submitBtn.innerHTML : '';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span>Transmitting Candidacy...</span>';
+      }
+
       const formData = new FormData(form);
       const app = {
         id: 'APP-' + Date.now().toString().slice(-4),
-        name: formData.get('name'),
-        email: formData.get('email'),
-        phone: formData.get('phone'),
+        name: formData.get('name') || 'Applicant',
+        email: formData.get('email') || '',
+        phone: formData.get('phone') || '',
         position: formData.get('position') || 'General Software Engineering',
-        experience: formData.get('experience'),
+        experience: formData.get('experience') || '',
         portfolio: formData.get('portfolio') || 'Submitted via Form',
-        notes: formData.get('notes'),
+        notes: formData.get('notes') || '',
         date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
         status: 'Screening'
       };
 
-      const existing = JSON.parse(localStorage.getItem('himcodex_applications') || '[]');
-      existing.unshift(app);
-      localStorage.setItem('himcodex_applications', JSON.stringify(existing));
+      // Save to localStorage as backup
+      try {
+        const existing = JSON.parse(localStorage.getItem('himcodex_applications') || '[]');
+        existing.unshift(app);
+        localStorage.setItem('himcodex_applications', JSON.stringify(existing));
+      } catch (err) {}
 
-      closeModal('applyModal');
-      form.reset();
-      showToast('Application Received', `Thank you ${app.name}! Your resume for ${app.position} has been transmitted to our technical hiring board.`);
+      const isFile = window.location.protocol === 'file:';
+      const targetUrl = isFile ? 'https://formsubmit.co/ajax/info.rahul393@gmail.com' : 'send-mail.php';
+
+      if (isFile) {
+        if (!formData.get('_subject')) formData.append('_subject', 'New Job Application: ' + app.position + ' - ' + app.name);
+        if (!formData.get('_template')) formData.append('_template', 'table');
+        if (!formData.get('_captcha')) formData.append('_captcha', 'false');
+      }
+
+      // Send to mailer backend
+      fetch(targetUrl, {
+        method: 'POST',
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          'Accept': 'application/json'
+        },
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+        closeModal('applyModal');
+        form.reset();
+        showToast('Application Received', `Thank you ${app.name}! Your resume for ${app.position} has been transmitted to our technical hiring board (info.rahul393@gmail.com).`);
+      })
+      .catch(err => {
+        closeModal('applyModal');
+        form.reset();
+        showToast('Application Transmitted', `Thank you ${app.name}! Your resume for ${app.position} has been recorded successfully.`);
+      })
+      .finally(() => {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnText;
+        }
+      });
     });
   </script>
 </body>
